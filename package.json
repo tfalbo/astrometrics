@@ -7,7 +7,9 @@
     "dependencies": {
         "axios": "^0.19.2",
         "eslint-config-airbnb-base": "^14.0.0",
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "express-prom-bundle": "^5.1.5",
+        "prom-client": "^11.5.3"
     },
     "devDependencies": {
         "eslint": "^6.8.0",

@@ -1,11 +1,15 @@
 const express = require('express');
 
+const Prometheus = require('prom-client');
+const promBundle = require('express-prom-bundle');
+
 const app = express();
 const {
     getZodiacSign,
     getZodiacMatch,
     getZodiacHoroscope,
 } = require('./zodiac/zodiac.js');
+
 
 
 app.get('/', (req, res) => {
@@ -32,3 +36,18 @@ app.get('/horoscope/', async (req, res) => {
     const result = await getZodiacHoroscope(req.query.sign);
     res.json(result);
 });
+
+app.get('/metrics', (_req, res) => {
+    res.set('Content-Type', Prometheus.register.contentType);
+    res.end(Prometheus.register.metrics());
+});
+
+app.use(promBundle({
+    includeMethod: true,
+    includePath: true,
+    promClient: {
+        collectDefaultMetrics: {
+            timeout: 1000,
+        },
+    },
+}));
