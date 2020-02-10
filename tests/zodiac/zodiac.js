@@ -1,121 +1,119 @@
 const assert = require('assert');
-const { 
-    getZodiacSign, 
+const {
+    getZodiacSign,
     getZodiacMatch,
     getZodiacHoroscope,
-  } = require('../../zodiac/zodiac.js');
+} = require('../../zodiac/zodiac.js');
 
-describe ('test zodiac sign functions', function(){
-    it('shoud return zodiac sign', function() {
+describe('test zodiac sign functions', () => {
+    it('shoud return zodiac sign', () => {
         // arrange
-        let month = 08;
-        let day = 19;
-        let expectedSignName = 'leo';
-        
+        const month = 8;
+        const day = 19;
+        const expectedSignName = 'leo';
+
         // act
-        let zodiacSign = getZodiacSign(month, day);
-        
+        const zodiacSign = getZodiacSign(month, day);
+
         // assert
-        assert.equal(zodiacSign.name, expectedSignName);      
+        assert.equal(zodiacSign.name, expectedSignName);
     });
 
-    it('should return warning if date is invalid', function(){
-    // arrange
-    let month = 99;
-    let day = 99;
-    let expectedResult = "invalid date";
-    
-    // act
-    let result = getZodiacSign(month,day);
-
-    assert.equal(result, expectedResult)
-    });
-
-    it('should return warning if param is missing', function(){
+    it('should return warning if date is invalid', () => {
         // arrange
-        let month = 99;
+        const month = 99;
+        const day = 99;
+        const expectedResult = 'invalid date';
 
-        let expectedResult = "invalid date";
-        
         // act
-        let result = getZodiacSign(month);
-    
-        assert.equal(result, expectedResult)
-        })
+        const result = getZodiacSign(month, day);
+
+        assert.equal(result, expectedResult);
+    });
+
+    it('should return warning if param is missing', () => {
+        // arrange
+        const month = 99;
+        const expectedResult = 'invalid date';
+
+        // act
+        const result = getZodiacSign(month);
+
+        assert.equal(result, expectedResult);
+    });
 });
 
-describe ('test zodiac match functions', function(){
-    it('shoud return true if signs match', function() {
+describe('test zodiac match functions', () => {
+    it('shoud return true if signs match', () => {
         // arrange
-        let first = 'leo';
-        let second = 'sagittarius';
-        
+        const first = 'leo';
+        const second = 'sagittarius';
+
         // act
-        let result = getZodiacMatch(first, second);
-        
+        const result = getZodiacMatch(first, second);
+
         // assert
-        assert.equal(result, true);      
+        assert.equal(result, true);
     });
 
-    it('should return false if signs do not match', function() {
+    it('should return false if signs do not match', () => {
         // arrange
-        let first = 'leo';
-        let second = 'taurus';
+        const first = 'leo';
+        const second = 'taurus';
 
-        // act 
-        let result = getZodiacMatch(first, second);
+        // act
+        const result = getZodiacMatch(first, second);
 
         // assert
         assert.equal(result, false);
     });
 
-    it('should return warning if signs is invalid', function() {
+    it('should return warning if signs is invalid', () => {
         // arrange
-        let first = 'blue';
-        let second = 'green';
-        let expectedResult = 'invalid request';
+        const first = 'blue';
+        const second = 'green';
+        const expectedResult = 'invalid request';
 
-        // act 
-        let result = getZodiacMatch(first, second);
+        // act
+        const result = getZodiacMatch(first, second);
 
         // assert
         assert.equal(result, expectedResult);
     });
 
-    it('should return warning if sign is missing', function() {
+    it('should return warning if sign is missing', () => {
         // arrange
-        let first = 'leo';
+        const first = 'leo';
+        const expectedResult = 'invalid request';
 
-        let expectedResult = 'invalid request';
-
-        // act 
-        let result = getZodiacMatch(first);
+        // act
+        const result = getZodiacMatch(first);
 
         // assert
         assert.equal(result, expectedResult);
     });
 });
 
-describe ('test zodiac horoscope', function(){
-    it('should horoscope for sign', async function(){
+describe('test zodiac horoscope', () => {
+    it('should horoscope for sign', async () => {
         // arrange
-        let sign = 'leo';
+        const sign = 'leo';
 
-        // act 
-        let result = await getZodiacHoroscope(sign);
+        // act
+        const result = await getZodiacHoroscope(sign);
 
-        //assert
+        // assert
         assert.notEqual(result, undefined);
     });
 
-    it('should warn if param is missing', async function(){
+    it('should warn if param is missing', async () => {
         // arrange
-        let sign = '';
+        const sign = '';
 
-        // act 
-        let result = await getZodiacHoroscope(sign);
+        // act
+        const result = await getZodiacHoroscope(sign);
 
-        //assert
+        // assert
         assert.notEqual(result, undefined);
     });
 });

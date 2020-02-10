@@ -1,0 +1,68 @@
+env:
+  es6: true
+  node: true
+  mocha: true
+extends: 
+  - 'eslint:recommended'
+  - 'airbnb-base'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  sourceType: module
+  ecmaVersion: 8
+rules:
+  eqeqeq:
+    - error
+    - always
+  space-before-blocks:
+    - error
+    - always
+  keyword-spacing:
+    - error
+    - { before: true }
+  no-extra-semi:
+    - error
+  semi-spacing:
+    - error
+    - { before: false, after: false }
+  comma-spacing:
+    - error
+    - { before: false, after: true }
+  object-curly-spacing:
+    - error
+    - always
+  no-multiple-empty-lines:
+    - error
+  no-var:
+    - error
+  prefer-const:
+    - error
+  max-len:
+    - error
+    - 120
+  no-trailing-spaces:
+    - 2
+  no-console:
+    - 0
+  eol-last:
+    - 2
+    - always
+  indent:
+    - error
+    - 4
+    - SwitchCase: 1
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+  camelcase: off
+  class-methods-use-this: off
+  no-underscore-dangle: off
+  no-return-await: off
+  global-require: off
+  no-prototype-builtins: off
